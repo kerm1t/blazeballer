@@ -52,11 +52,11 @@ function infinite_grid() {
   background(200);
 //  noFill();
 //  strokeWeight(1); // Thicker
-  blendMode(SUBTRACT);
+//  blendMode(SUBTRACT);
   
   // ver slow now - however much faster in https://editor.p5js.org/
+  beginShape(QUAD_STRIP); // add only 2 new vertices
   for (let y=0;y<40;y++) {
-    beginShape(QUAD_STRIP); // add only 2 new vertices
     x = 0;
     vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
     vertex(-10+x*10,(yinc+(ystart+y+1)*10), 0);
@@ -68,8 +68,8 @@ function infinite_grid() {
 //      stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
       fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
     }
-    endShape();
   }
+  endShape();
 }
 
 // https://discourse.processing.org/t/how-to-make-a-better-zoom-with-orbitcontrol/12978/4
