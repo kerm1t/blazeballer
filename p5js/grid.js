@@ -4,12 +4,12 @@
 // (c) 2022 kmt, mirage, ekwotech
 
 let sliderGroup = [];
-let X;
-let Y;
-let Z;
-let centerX;
-let centerY;
-let centerZ;
+let X=86;
+let Y=290;
+let Z=54;
+let centerX=86;
+let centerY=18;
+let centerZ=0;
 let h = 20
 
 function setup_cam() {
@@ -27,6 +27,13 @@ function setup_cam() {
   describe(
     'White square repeatedly grows to fill canvas and then shrinks. An interactive example of a red cube with 3 sliders for moving it across x, y, z axis and 3 sliders for shifting its center.'
   );
+X=86;
+Y=290;
+Z=54;
+centerX=86;
+centerY=18;
+centerZ=0;
+
 }
 
 function set_cam() {
@@ -37,13 +44,14 @@ function set_cam() {
   centerX = sliderGroup[3].value();
   centerY = sliderGroup[4].value();
   centerZ = sliderGroup[5].value();
-  camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);  
+  camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);
+  print(X,Y,Z,centerX, centerY, centerZ) 
 }
 
 function infinite_grid() {
   background(200);
 //  noFill();
-  strokeWeight(0); // Thicker
+//  strokeWeight(1); // Thicker
   blendMode(SUBTRACT);
   
   // ver slow now - however much faster in https://editor.p5js.org/
@@ -77,7 +85,8 @@ function zoom(event) {
 
 function setup() {
   cnv = createCanvas(1200, 800, WEBGL);
-  setup_cam();
+//  setup_cam();
+  camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);
 
 //  spiral();
 //  spiral3d(); tut's ned
@@ -90,7 +99,6 @@ function setup() {
 
 function draw()
 {
-  set_cam();
   yinc += 1; // 2do: to go slower or faster, have a scaling factor
   if (yinc%10==0)
   {
@@ -98,6 +106,10 @@ function draw()
   }
 
   infinite_grid();
+
+//  set_cam();
+  // vs.
   orbitControl();
+// WBGL only opentype/truetype fonts --> text(frameRate(),10,10);
   console.log(frameRate());
 }
