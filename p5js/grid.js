@@ -9,17 +9,17 @@ function infinite_grid() {
   strokeWeight(1); // Thicker
  
 // x only starts at 0 --> fixed
-  for (let x=0;x<40;x++) {
+  for (let y=0;y<40;y++) {
     beginShape(QUADS);
-      vertex((xinc+(xstart+x)*10), 0, 100);
-      vertex((xinc+(xstart+x+1)*10), 0, 100);
-      vertex((xinc+(xstart+x+1)*10), 0, -100);
-      vertex((xinc+(xstart+x)*10), 0, -100);
+      vertex(100,(yinc+(ystart+y)*10), 0);
+      vertex(100,(yinc+(ystart+y+1)*10), 0);
+      vertex(-100,(yinc+(ystart+y+1)*10), 0);
+      vertex(-100,(yinc+(ystart+y)*10), 0);
 //      print (xstart+xinc+x*10);
     endShape();
 // hmm bit weired, x and xstart is times 10, xinc is div by 10, so we need to do some juggling here for the color
-    stroke(((xstart+xinc*10+x)%2)*255,200,0);
-    fill(((xstart+xinc*10+x)%2)*255,200,0);
+    stroke(((ystart+yinc*10+y)%2)*255,200,0);
+    fill(((ystart+yinc*10+y)%2)*255,200,0);
     }
 }
 
@@ -42,21 +42,18 @@ function setup() {
   cnv.mouseWheel(zoom);
 
 // 2do: tilt camera
-  xstart = 0;
-  xinc = 0;
+  ystart = 0;
+  yinc = 0;
 }
 
 function draw()
 {
-  xinc += 1;
-// replace this guy ->  
-//if (xinc >= 10.0)
-print(xinc)
-if (xinc%10==0)
-{
-xstart -=1.0;
-//  xinc = 0.0;
-}
-infinite_grid();
+  yinc += 1; // 2do: to go slower or faster, have a scaling factor
+  if (yinc%10==0)
+  {
+    ystart -=1.0;
+  }
+
+  infinite_grid();
   orbitControl();
 }
