@@ -9,20 +9,21 @@ function infinite_grid() {
   strokeWeight(0); // Thicker
  
   // ver slow now - however much faster in https://editor.p5js.org/
-  beginShape(QUAD_STRIP);
   for (let y=0;y<40;y++) {
+    beginShape(QUAD_STRIP); // add only 2 new vertices
+    x = 0;
+    vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
+    vertex(-10+x*10,(yinc+(ystart+y+1)*10), 0);
     for (let x=0;x<20;x++) {
-      vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
       vertex(-10+x*10,(yinc+(ystart+y+1)*10), 0);
-      vertex(-10+(x+1)*10,(yinc+(ystart+y+1)*10), 0);
-      vertex(-10+(x+1)*10,(yinc+(ystart+y)*10), 0);
+      vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
 //      print (xstart+xinc+x*10);
 // hmm bit weired, x and xstart is times 10, xinc is div by 10, so we need to do some juggling here for the color
-stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
-fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+//      stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+      fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
     }
+    endShape();
   }
-  endShape();
 }
 
 // https://discourse.processing.org/t/how-to-make-a-better-zoom-with-orbitcontrol/12978/4
