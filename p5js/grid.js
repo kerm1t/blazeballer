@@ -90,7 +90,7 @@ function infinite_grid_70FPS() {
       for (let x=0;x<20;x++) {
           vertex(x*10,(yinc+(ystart+y+1)*10), 0);
           vertex(x*10,(yinc+(ystart+y)*10), 0);    
-          fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+          fill(((ystart+yinc*10+y)%2)*255,((ystart+yinc*10+x)%2)*255,0);
       }
     }
   else
@@ -98,7 +98,7 @@ function infinite_grid_70FPS() {
       for (let x=0;x<20;x++) {
           vertex(190-x*10,(yinc+(ystart+y+1)*10), 0);
           vertex(190-x*10,(yinc+(ystart+y)*10), 0);    
-          fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+          fill(((ystart+yinc*10+y)%2)*255,((ystart+yinc*10+x)%2)*255,0);
       }
   }
 //      print (xstart+xinc+x*10);
@@ -106,7 +106,7 @@ function infinite_grid_70FPS() {
 //      stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
      }
   endShape();
-  }
+}
 
 // https://discourse.processing.org/t/how-to-make-a-better-zoom-with-orbitcontrol/12978/4
 function zoom(event) {
@@ -120,7 +120,10 @@ function zoom(event) {
 }
 
 function setup() {
-  cnv = createCanvas(1200, 800, WEBGL);
+  w = 1200
+  h = 800
+  cnv = createCanvas(w, h, WEBGL);
+//  perspective(PI / 3.0, cnv.width / cnv.height, 0.1, 500);
 //  setup_cam();
   camera(X, Y, Z, centerX, centerY, centerZ, 0, 1, 0);
 
@@ -147,5 +150,5 @@ function draw()
   // vs.
   orbitControl();
 // WBGL only opentype/truetype fonts --> text(frameRate(),10,10);
-  console.log(frameRate());
+//  console.log(frameRate());
 }
