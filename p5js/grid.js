@@ -11,8 +11,8 @@ function infinite_grid() {
 // x only starts at 0 --> fixed
   for (let x=0;x<40;x++) {
     beginShape(LINES);
-      vertex(xinc+(xstart+x)*10, 0, 100);
-      vertex(xinc+(xstart+x)*10, 0, -100);
+      vertex((xinc+(xstart+x)*10) % 200, 0, 100);
+      vertex((xinc+(xstart+x)*10) % 200, 0, -100);
 //      print (xstart+xinc+x*10);
     endShape();
     stroke((x%2)*255,200,0);
@@ -46,7 +46,7 @@ function draw()
 {
   xinc += 0.5;
 // replace this guy ->  
-if (xinc >= 10.0) xinc = 0.0;
+//if (xinc >= 10.0) xinc = 0.0;
   infinite_grid();
   orbitControl();
 }
