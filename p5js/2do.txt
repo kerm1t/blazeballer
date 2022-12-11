@@ -1,0 +1,12 @@
+12/11/
+_.::--== ballblazer ==--::._
+
+planning
+how to get a continuous grid?
+- draw grid
+- ego = 0  or  ego progress?
+- move grid
+- when 1 cell moved
+  -> delete lines/tri's behind ego
+  -> draw new lines/tri's at horizon
+  (what about when ego turns? not for this)
