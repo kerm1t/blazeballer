@@ -8,11 +8,12 @@ function infinite_grid() {
   noFill();
   strokeWeight(4); // Thicker
  
-  for (let x=xstart+xinc;x<xstart+xinc+40;x++) {
+  for (let x=0;x<40;x++) {
     beginShape(LINES);
-      vertex(x*10, 0, 100);
-      vertex(x*10, 0, -100);
+      vertex(xstart+xinc+x*10, 0, 100);
+      vertex(xstart+xinc+x*10, 0, -100);
     endShape();
+    stroke((x%2)*255,200,0);
     }
 }
 
@@ -41,8 +42,8 @@ function setup() {
 
 function draw()
 {
-  xinc += 0.1;
-  if (xinc >= 1.0) xinc = 0.0;
+  xinc += 0.5;
+  if (xinc >= 10.0) xinc = 0.0;
   infinite_grid();
   orbitControl();
 }
