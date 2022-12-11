@@ -6,21 +6,23 @@
 function infinite_grid() {
   background(200);
 //  noFill();
-  strokeWeight(1); // Thicker
+  strokeWeight(0); // Thicker
  
 // x only starts at 0 --> fixed
   for (let y=0;y<40;y++) {
-    beginShape(QUADS);
-      vertex(100,(yinc+(ystart+y)*10), 0);
-      vertex(100,(yinc+(ystart+y+1)*10), 0);
-      vertex(-100,(yinc+(ystart+y+1)*10), 0);
-      vertex(-100,(yinc+(ystart+y)*10), 0);
+    for (let x=0;x<20;x++) {
+      beginShape(QUADS);
+      vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
+      vertex(-10+x*10,(yinc+(ystart+y+1)*10), 0);
+      vertex(-10+(x+1)*10,(yinc+(ystart+y+1)*10), 0);
+      vertex(-10+(x+1)*10,(yinc+(ystart+y)*10), 0);
 //      print (xstart+xinc+x*10);
     endShape();
 // hmm bit weired, x and xstart is times 10, xinc is div by 10, so we need to do some juggling here for the color
-    stroke(((ystart+yinc*10+y)%2)*255,200,0);
-    fill(((ystart+yinc*10+y)%2)*255,200,0);
+stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
     }
+  }
 }
 
 // https://discourse.processing.org/t/how-to-make-a-better-zoom-with-orbitcontrol/12978/4
