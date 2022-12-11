@@ -48,15 +48,15 @@ function set_cam() {
   print(X,Y,Z,centerX, centerY, centerZ) 
 }
 
-function infinite_grid() {
+function infinite_grid_30FPS() {
   background(200);
 //  noFill();
 //  strokeWeight(1); // Thicker
 //  blendMode(SUBTRACT);
   
   // ver slow now - however much faster in https://editor.p5js.org/
-  beginShape(QUAD_STRIP); // add only 2 new vertices
   for (let y=0;y<40;y++) {
+    beginShape(QUAD_STRIP); // add only 2 new vertices
     x = 0;
     vertex(-10+x*10,(yinc+(ystart+y)*10), 0);
     vertex(-10+x*10,(yinc+(ystart+y+1)*10), 0);
@@ -68,9 +68,45 @@ function infinite_grid() {
 //      stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
       fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
     }
+    endShape();
   }
-  endShape();
 }
+
+function infinite_grid_70FPS() {
+  background(200);
+//  noFill();
+//  strokeWeight(1); // Thicker
+//  blendMode(SUBTRACT);
+  
+  // ver slow now - however much faster in https://editor.p5js.org/
+  beginShape(QUAD_STRIP); // add only 2 new vertices
+  let x = 0;
+  for (let y=0;y<40;y++) {
+//      x = 0;
+    if(y%2==0)
+    {
+      vertex(x*10,(yinc+(ystart+y)*10), 0);
+      vertex(x*10,(yinc+(ystart+y+1)*10), 0);
+      for (let x=0;x<20;x++) {
+          vertex(x*10,(yinc+(ystart+y+1)*10), 0);
+          vertex(x*10,(yinc+(ystart+y)*10), 0);    
+          fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+      }
+    }
+  else
+  {
+      for (let x=0;x<20;x++) {
+          vertex(190-x*10,(yinc+(ystart+y+1)*10), 0);
+          vertex(190-x*10,(yinc+(ystart+y)*10), 0);    
+          fill(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+      }
+  }
+//      print (xstart+xinc+x*10);
+// hmm bit weired, x and xstart is times 10, xinc is div by 10, so we need to do some juggling here for the color
+//      stroke(((ystart+yinc*10+y)%2)*255,(x%2)*255,0);
+     }
+  endShape();
+  }
 
 // https://discourse.processing.org/t/how-to-make-a-better-zoom-with-orbitcontrol/12978/4
 function zoom(event) {
@@ -105,7 +141,7 @@ function draw()
     ystart -=1.0;
   }
 
-  infinite_grid();
+  infinite_grid_70FPS();
 
 //  set_cam();
   // vs.
